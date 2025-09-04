@@ -33,15 +33,13 @@ public class TestRunner {
 
     }
 
-
-
     private static void sortMethodsByAnnotationName(Method[] methods) {
         for (Method method : methods) {
             if (method.isAnnotationPresent(Test.class)) {
                 test.add(method);
             } else if (method.isAnnotationPresent(BeforeSuite.class)) {
                 beforeSuit.add(method);
-            } else if (method.isAnnotationPresent(AfterSuite.class)) {
+            } else if  (method.isAnnotationPresent(AfterSuite.class)) {
                 afterSuit.add(method);
             }
         }

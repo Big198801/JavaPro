@@ -4,26 +4,36 @@ import ru.big198801.annotation.AfterSuite;
 import ru.big198801.annotation.BeforeSuite;
 import ru.big198801.annotation.Test;
 
+
 public class SomeTestClass {
     //without annotation
     public static void learnJava() {
         System.out.println("Java First!");
     }
 
-    @BeforeSuite
-    public static void wakeUp() {
-        System.out.println("Wake Up!...");
-    }
     @Test(priority = 2)
     public void dressUp() {
         System.out.println("Dressing...");
     }
 
+    @BeforeSuite
+    public static void wakeUp() {
+        System.out.println("Wake Up!...i'm STATIC");
+    }
+
+    @AfterSuite
+    public static void goSleep() {
+        System.out.println("Sleeping... i'm STATIC");
+    }
+    //    @AfterSuite //second AfterSuite not allowed
+    //    public static void goSleep2() {
+    //        System.out.println("Sleeping2222... i'm STATIC");
+    //    }
+
     @Test(priority = 1)
     public void washUp() {
         System.out.println("Washing...");
     }
-
 
     @Test(priority = 3)
     public void eatUp() {
@@ -39,11 +49,4 @@ public class SomeTestClass {
     public void chillUp() {
         System.out.println("Chilling...");
     }
-
-    @AfterSuite
-    public static void goSleep() {
-        System.out.println("Sleeping...");
-    }
-
-
 }
