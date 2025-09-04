@@ -6,7 +6,7 @@ import ru.big198801.annotation.Test;
 
 public class SomeTestClass {
     //without annotation
-    public void learnJava() {
+    public static void learnJava() {
         System.out.println("Java First!");
     }
 
@@ -14,20 +14,20 @@ public class SomeTestClass {
     public static void wakeUp() {
         System.out.println("Wake Up!...");
     }
+    @Test(priority = 2)
+    public void dressUp() {
+        System.out.println("Dressing...");
+    }
 
     @Test(priority = 1)
     public void washUp() {
         System.out.println("Washing...");
     }
 
-    @Test(priority = 2)
-    public void dressUp() {
-        System.out.println("Dressing...");
-    }
 
     @Test(priority = 3)
     public void eatUp() {
-        System.out.println("Wating food...");
+        System.out.println("Eating food...");
     }
 
     @Test(priority = 4)
