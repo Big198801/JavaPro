@@ -1,4 +1,4 @@
-package ru.big198801.annotation;
+package ru.big198801.hw1.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

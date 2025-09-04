@@ -1,8 +1,8 @@
-package ru.big198801;
+package ru.big198801.hw1;
 
-import ru.big198801.annotation.AfterSuite;
-import ru.big198801.annotation.BeforeSuite;
-import ru.big198801.annotation.Test;
+import ru.big198801.hw1.annotation.AfterSuite;
+import ru.big198801.hw1.annotation.BeforeSuite;
+import ru.big198801.hw1.annotation.Test;
 
 
 public class SomeTestClass {
