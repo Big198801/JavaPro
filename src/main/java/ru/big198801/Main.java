@@ -35,6 +35,10 @@ public class Main {
         //посчитайте средний возраст сотрудников с должностью «Инженер»
         System.out.println(getEngineersAverageAge(employeeList));
 
+
+        //Найдите в списке слов самое длинное
+         List<String> strings = Arrays.asList("qwer", "qwerty", "qwe", "qwerty12345");
+        System.out.println(getLongestWord(strings));
     }
 
     public static int getMaxThirdNumber(List<Integer> numbers) throws NoSuchElementException {
@@ -69,6 +73,13 @@ public class Main {
                 .mapToInt(Employee::getAge)
                 .average()
                 .orElseThrow());
+    }
+
+    public static String getLongestWord(List<String> listOfWords)throws NoSuchElementException{
+        return listOfWords.stream()
+                .max(Comparator.comparing(String::length))
+                .orElseThrow();
+
     }
 
 }
