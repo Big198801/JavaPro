@@ -1,6 +1,8 @@
 package ru.big198801;
 
+import java.sql.Array;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -39,6 +41,12 @@ public class Main {
         //Найдите в списке слов самое длинное
          List<String> strings = Arrays.asList("qwer", "qwerty", "qwe", "qwerty12345");
         System.out.println(getLongestWord(strings));
+
+        //Имеется строка с набором слов в нижнем регистре, разделенных пробелом.
+        //Постройте хеш-мапы, в которой будут храниться пары: слово - сколько раз оно встречается во входной строке
+        String s = "hi hi my name is is niko niko";
+        System.out.println(getMapFromStringByCounting(s));
+
     }
 
     public static int getMaxThirdNumber(List<Integer> numbers) throws NoSuchElementException {
@@ -79,7 +87,11 @@ public class Main {
         return listOfWords.stream()
                 .max(Comparator.comparing(String::length))
                 .orElseThrow();
+    }
 
+    public static Map<String, Long> getMapFromStringByCounting(String string){
+       return Arrays.stream(string.split(" "))
+                .collect(Collectors.groupingBy(String::toString, Collectors.counting()));
     }
 
 }
