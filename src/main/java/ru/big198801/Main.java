@@ -17,8 +17,8 @@ public class Main {
         //Имеется список объектов типа Сотрудник (имя, возраст, должность),
         //необходимо получить список имен 3 самых старших сотрудников с должностью «Инженер», в порядке убывания возраста
         Employee emp1 = new Employee(34,"Nikolay", Position.ENGINEER);
-        Employee emp2 = new Employee(30,"Vadim", Position.JUNIOR);
-        Employee emp3 = new Employee(39,"Alexander", Position.SENIOR);
+        Employee emp2 = new Employee(30,"Vadim", Position.MANAGER);
+        Employee emp3 = new Employee(39,"Alexander", Position.DIRECTOR);
         Employee emp4 = new Employee(23,"Danil", Position.ENGINEER);
         Employee emp5 = new Employee(45,"Eugine", Position.ENGINEER);
         Employee emp6 = new Employee(60,"Igor", Position.ENGINEER);
@@ -39,7 +39,7 @@ public class Main {
 
 
         //Найдите в списке слов самое длинное
-         List<String> strings = Arrays.asList("qwer", "qwerty", "qwe", "qwerty12345");
+        List<String> strings = Arrays.asList("qwer","qwerzy", "qwerty","qweray", "qwe", "qwerty12345");
         System.out.println(getLongestWord(strings));
 
         //Имеется строка с набором слов в нижнем регистре, разделенных пробелом.
@@ -47,6 +47,14 @@ public class Main {
         String s = "hi hi my name is is niko niko";
         System.out.println(getMapFromStringByCounting(s));
 
+        //Отпечатайте в консоль строки из списка в порядке увеличения длины слова,
+        //если слова имеют одинаковую длины, то должен быть сохранен алфавитный порядок
+        sortWordsByLength(strings);
+
+        //Имеется массив строк, в каждой из которых лежит набор из 5 слов, разделенных пробелом,
+        //найдите среди всех слов самое длинное, если таких слов несколько, получите любое из них
+        String[] array = new String[]{"hello how are you doinggg", "I'm fine thank you soooooo much"};
+        System.out.println(getLongestWordFromArray(array));
     }
 
     public static int getMaxThirdNumber(List<Integer> numbers) throws NoSuchElementException {
@@ -94,4 +102,16 @@ public class Main {
                 .collect(Collectors.groupingBy(String::toString, Collectors.counting()));
     }
 
+    public static void sortWordsByLength(List<String> words){
+         words.stream()
+                 .sorted(Comparator.comparing(String::length).thenComparing(Comparator.naturalOrder()))
+                 .forEach(System.out::println);
+    }
+
+    public static String getLongestWordFromArray(String[] array)throws NoSuchElementException{
+        return Arrays.stream(array)
+                .flatMap(str -> Arrays.stream(str.split(" ")))
+                .max(Comparator.comparing(String::length))
+                .orElseThrow();
+    }
 }
