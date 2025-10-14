@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Afanasev
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: username
+                  type: VARCHAR(255)
+                  constraints:
+                    unique: true
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Afanasev
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: Niko
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: Anna
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: Lera

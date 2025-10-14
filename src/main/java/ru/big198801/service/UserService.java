@@ -1,49 +1,40 @@
 package ru.big198801.service;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import ru.big198801.dao.UserDao;
-import ru.big198801.model.Users;
+import ru.big198801.entity.Users;
+import ru.big198801.repository.UsersRepository;
 
 import java.sql.SQLException;
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class UserService {
-    private final UserDao userDAO;
+    private final UsersRepository usersRepository;
 
-    public UserService(UserDao userDAO) {
-        this.userDAO = userDAO;
-    }
 
-    public Users getUserByName(String name) throws SQLException {
-       return userDAO.getUserByName(name);
+    public Users getUserByUserName(String name) throws SQLException {
+        return usersRepository.findByUsername(name).orElseThrow(() -> new SQLException("No user found with name: " + name));
     }
 
     public Users getUserById(Long id) throws SQLException {
-        return userDAO.getUserById(id);
+        return usersRepository.findById(id).orElseThrow(() -> new SQLException("No user found by id: " + id));
     }
 
     public void updateUser(Users user) throws SQLException {
-        userDAO.updateUser(user);
+        usersRepository.save(user);
     }
 
-    public void deleteUser(Long id) throws SQLException {
-        userDAO.deleteUser(id);
-    }
-
-    public void insertUser(Users user) throws SQLException {
-        userDAO.createUser(user);
+    public void deleteUserById(Long id) throws SQLException {
+        usersRepository.deleteById(id);
     }
 
     public List<Users> getAllUsers() throws SQLException {
-        return userDAO.getAllUsers();
+        return usersRepository.findAll();
     }
 
     public void deleteAllUsers() throws SQLException {
-        userDAO.deleteAllUsers();
-    }
-
-    public void clearSequences() throws SQLException {
-        userDAO.clearSequences();
+        usersRepository.deleteAll();
     }
 }
