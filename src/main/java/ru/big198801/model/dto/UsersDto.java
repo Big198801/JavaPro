@@ -1,0 +1,5 @@
+package ru.big198801.model.dto;
+
+import java.util.List;
+
+public record UsersDto(Long id, String username, List<ProductsDto> productsDtoSet) {}

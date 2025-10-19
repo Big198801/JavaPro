@@ -1,10 +1,11 @@
 package ru.big198801.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
-import ru.big198801.entity.Users;
+import ru.big198801.model.entity.Users;
 import ru.big198801.repository.UsersRepository;
 
 import java.util.List;
@@ -17,6 +18,7 @@ public class RunService implements CommandLineRunner {
     private final UsersRepository usersRepository;
 
     @Override
+    @Transactional
     public void run(String... args) throws Exception {
         log.info("Запуск тестов методов репозитория...");
         log.info("getUserById : {}", userService.getUserById(1L).toString());
