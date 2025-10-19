@@ -1,0 +1,155 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Afanasev
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: username
+                  type: VARCHAR(255)
+                  constraints:
+                    unique: true
+                    nullable: false
+  - changeSet:
+      id: 2
+      author: Afanasev
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: Niko
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: Anna
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: username
+                  value: Lera
+  - changeSet:
+      id: add-created-at-to-users
+      author: Afanasev
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+                  defaultValue: now()
+  - changeSet:
+      id: add-new-table-products
+      author: Afanasev
+      changes:
+        - createTable:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: account_number
+                  type: VARCHAR(20)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: balance
+                  type: DECIMAL(19,4)
+                  constraints:
+                    nullable: false
+                  defaultValue: 0
+              - column:
+                  name: product_type
+                  type: VARCHAR(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+                  defaultValue: now()
+  - changeSet:
+      id: update-table-products
+      author: Afanasev
+      changes:
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: account_number
+                  value: 0001
+              - column:
+                  name: balance
+                  value: 0.000
+              - column:
+                  name: product_type
+                  value: CARD
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: created_at
+                  value: now()
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: account_number
+                  value: 0002
+              - column:
+                  name: balance
+                  value: 100.000
+              - column:
+                  name: product_type
+                  value: ACCOUNT
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: created_at
+                  value: now()
+        - insert:
+            tableName: products
+            columns:
+              - column:
+                  name: account_number
+                  value: 0003
+              - column:
+                  name: balance
+                  value: 10.000
+              - column:
+                  name: product_type
+                  value: CARD
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: created_at
+                  value: now()
