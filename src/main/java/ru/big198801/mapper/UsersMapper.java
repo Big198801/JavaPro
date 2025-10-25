@@ -4,7 +4,7 @@ package ru.big198801.mapper;
 import org.springframework.stereotype.Component;
 import ru.big198801.model.dto.PaymentDto;
 import ru.big198801.model.dto.UsersDto;
-import ru.big198801.model.entity.Users;
+import ru.big198801.model.entity.User;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class UsersMapper {
         this.paymentMapper = paymentMapper;
     }
 
-    public UsersDto toUsersDto(Users users) {
+    public UsersDto toUsersDto(User users) {
         List<PaymentDto> paymentDtoList = null;
         if (!users.getPayments().isEmpty()) {
             paymentDtoList = paymentMapper.toDtoList(users.getPayments().stream().toList());
@@ -27,10 +27,10 @@ public class UsersMapper {
         return new UsersDto(users.getId(), users.getUsername(), paymentDtoList);
     }
 
-    public List<UsersDto> toUsersDtoList(List<Users> usersList) {
+    public List<UsersDto> toUsersDtoList(List<User> usersList) {
         List<UsersDto> usersDtoList = new ArrayList<>();
         if (!usersList.isEmpty()) {
-            for (Users users : usersList) {
+            for (User users : usersList) {
                 usersDtoList.add(toUsersDto(users));
             }
         }
@@ -38,8 +38,8 @@ public class UsersMapper {
         return usersDtoList;
     }
 
-    public Users toEntity(UsersDto usersDto) {
-        return new Users()
+    public User toEntity(UsersDto usersDto) {
+        return new User()
                 .setUsername(usersDto.username())
                 .setCreatedAt(OffsetDateTime.now());
     }

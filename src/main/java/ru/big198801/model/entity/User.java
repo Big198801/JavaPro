@@ -14,7 +14,7 @@ import static ru.big198801.utils.Utils.setToString;
         name = "Users.withPayments",
         attributeNodes = @NamedAttributeNode("payments")
 )
-public class Users {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -28,29 +28,29 @@ public class Users {
     private Set<Payment> payments;
 
 
-    public Users setId(Long id) {
+    public User setId(Long id) {
         this.id = id;
         return this;
     }
 
-    public Users setUsername(String username) {
+    public User setUsername(String username) {
         this.username = username;
         return this;
     }
 
-    public Users setCreatedAt(OffsetDateTime createdAt) {
+    public User setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
         return this;
     }
 
-    public Users setPayments(Set<Payment> payments) {
+    public User setPayments(Set<Payment> payments) {
         this.payments = payments;
         return this;
     }
 
     @Override
     public String toString() {
-        return new StringBuilder().append("Users [id=").append(id)
+        return new StringBuilder().append("User [id=").append(id)
                 .append(", username=").append(username)
                 .append(", createdAt=").append(createdAt)
                 .append(", payments=").append(setToString(payments))

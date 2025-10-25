@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import ru.big198801.mapper.ProductsMapper;
 import ru.big198801.model.dto.ProductsDto;
 import ru.big198801.model.entity.Payment;
-import ru.big198801.model.entity.Products;
+import ru.big198801.model.entity.Product;
 import ru.big198801.repository.PaymentsRepository;
 import ru.big198801.repository.ProductsRepository;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class ProductsService {
 
     public ProductsDto getProductById(Long id) {
         log.info("Запрос продукта с id: {}", id);
-        Products products = productsRepository.findById(id).orElseThrow(() -> {
+        Product products = productsRepository.findById(id).orElseThrow(() -> {
             log.error("Продукт с id не найден: {}", id);
             return new EntityNotFoundException("Продукт не найден, id: " + id);
         });
@@ -41,7 +41,7 @@ public class ProductsService {
                 .stream()
                 .map(Payment::getId)
                 .toList();
-        List<Products> productsList = productsRepository.findByPaymentIdIn(paymentsId).orElseThrow(() -> {
+        List<Product> productsList = productsRepository.findByPaymentIdIn(paymentsId).orElseThrow(() -> {
             log.error("Продукты по данным платежам не найдены {} не найден: ", paymentsId);
             return new EntityNotFoundException("Продукты не найден, paymentsId: " + paymentsId);
         });

@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import ru.big198801.mapper.UsersMapper;
 import ru.big198801.model.dto.UsersDto;
-import ru.big198801.model.entity.Users;
+import ru.big198801.model.entity.User;
 import ru.big198801.repository.UsersRepository;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class UserService {
 
     public UsersDto getUserByUserName(String name){
         log.info("Запрос пользователя с username: {}", name);
-        Users user = usersRepository.findByUsername(name).orElseThrow(() -> {
+        User user = usersRepository.findByUsername(name).orElseThrow(() -> {
             log.error("Пользователя с username не найден: {}", name);
             return new EntityNotFoundException("Пользователь не найден username: " + name);
         });
@@ -30,7 +30,7 @@ public class UserService {
     @Transactional
     public UsersDto getUserById(Long id) {
         log.info("Запрос пользователя с ID: {}", id);
-        Users user = usersRepository.findById(id).orElseThrow(() -> {
+        User user = usersRepository.findById(id).orElseThrow(() -> {
             log.error("Пользователя с ID не найден: {}", id);
             return new EntityNotFoundException("Пользователь не найден ID: " + id);
         });
@@ -38,7 +38,7 @@ public class UserService {
     }
 
     @Transactional
-    public void updateUser(Users user) {
+    public void updateUser(User user) {
         usersRepository.save(user);
     }
 

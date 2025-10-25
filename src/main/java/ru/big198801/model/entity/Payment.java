@@ -2,7 +2,6 @@ package ru.big198801.model.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.time.OffsetDateTime;
@@ -32,10 +31,10 @@ public class Payment {
     @ManyToOne
     @JoinColumn(name="user_id")
     @ToString.Exclude
-    private Users user;
+    private User user;
 
     @OneToMany(mappedBy = "payment", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Products> products;
+    private Set<Product> products;
 
 
 
@@ -49,7 +48,7 @@ public class Payment {
         return this;
     }
 
-    public Payment setUser(Users user) {
+    public Payment setUser(User user) {
         this.user = user;
         return this;
     }
@@ -59,7 +58,7 @@ public class Payment {
         return this;
     }
 
-    public Payment setProducts(Set<Products> products) {
+    public Payment setProducts(Set<Product> products) {
         this.products = products;
         return this;
     }
@@ -76,7 +75,7 @@ public class Payment {
         return sb.toString();
     }
 
-    public void addProduct(Products product) {
+    public void addProduct(Product product) {
         products.add(product);
         product.setPayment(this);
     }

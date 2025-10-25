@@ -3,7 +3,6 @@ package ru.big198801.mapper;
 import ru.big198801.model.dto.PaymentDto;
 import ru.big198801.model.dto.ProductsDto;
 import ru.big198801.model.entity.Payment;
-import ru.big198801.model.entity.Products;
 import org.springframework.stereotype.Component;
 
 import java.time.OffsetDateTime;

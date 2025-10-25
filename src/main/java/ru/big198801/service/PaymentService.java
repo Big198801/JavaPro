@@ -6,10 +6,9 @@ import ru.big198801.mapper.PaymentMapper;
 import ru.big198801.mapper.ProductsMapper;
 import ru.big198801.model.dto.PaymentDto;
 import ru.big198801.model.entity.Payment;
-import ru.big198801.model.entity.Products;
-import ru.big198801.model.entity.Users;
+import ru.big198801.model.entity.Product;
+import ru.big198801.model.entity.User;
 import ru.big198801.repository.PaymentsRepository;
-import ru.big198801.repository.ProductsRepository;
 import ru.big198801.repository.UsersRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +25,7 @@ public class PaymentService {
     private final ProductsMapper productsMapper;
 
     public void pay(PaymentDto paymentDto) {
-        Users users = usersRepository.findById(paymentDto.userId()).orElseThrow(
+        User users = usersRepository.findById(paymentDto.userId()).orElseThrow(
                 () -> {
                     log.error("User not found");
                     return new EntityNotFoundException("User not found");
@@ -34,9 +33,9 @@ public class PaymentService {
         );
 
         Payment payment = paymentMapper.toEntity(paymentDto);
-        Set<Products> productsList = productsMapper.toEntitySet(paymentDto.productsDtoList());
+        Set<Product> productsList = productsMapper.toEntitySet(paymentDto.productsDtoList());
         payment.setProducts(productsList);
-        for (Products products : productsList) {
+        for (Product products : productsList) {
             payment.addProduct(products);
         }
         users.getPayments().add(payment);

@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
 @Table(name = "products")
 @RequiredArgsConstructor
 @Getter
-public class Products {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -34,39 +34,39 @@ public class Products {
         ACCOUNT, CARD
     }
 
-    public Products setId(Long id) {
+    public Product setId(Long id) {
         this.id = id;
         return this;
     }
 
-    public Products setAccountNumber(Long accountNumber) {
+    public Product setAccountNumber(Long accountNumber) {
         this.accountNumber = accountNumber;
         return this;
     }
 
-    public Products setBalance(Double balance) {
+    public Product setBalance(Double balance) {
         this.balance = balance;
         return this;
     }
 
-    public Products setProductType(ProductType productType) {
+    public Product setProductType(ProductType productType) {
         this.productType = productType;
         return this;
     }
 
-    public Products setCreatedAt(OffsetDateTime createdAt) {
+    public Product setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
         return this;
     }
 
-    public Products setPayment(Payment payment) {
+    public Product setPayment(Payment payment) {
         this.payment = payment;
         return this;
     }
 
     @Override
     public String toString() {
-        return "Products{" +
+        return "Product{" +
                 "id=" + id +
                 ", accountNumber='" + accountNumber + '\'' +
                 ", balance=" + balance +
