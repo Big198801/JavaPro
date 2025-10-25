@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5430/HW4
+    username: root
+    password: 123
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    drop-first: false
+    contexts: dev
+
+logging:
+  level:
+    liquibase: DEBUG
+    org.liquibase: DEBUG
+    org.springframework.liquibase: DEBUG
+
+server:
+  port: 8080
+  name: "product-service"
