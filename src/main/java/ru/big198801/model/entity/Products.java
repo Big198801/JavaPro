@@ -1,19 +1,15 @@
 package ru.big198801.model.entity;
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 import java.time.OffsetDateTime;
-
 
 @Entity
 @Table(name = "products")
 @RequiredArgsConstructor
 @Getter
-@Setter
 public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,12 +26,42 @@ public class Products {
     private OffsetDateTime createdAt;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name="payment_id")
     @ToString.Exclude
-    private Users user;
+    private Payment payment;
 
-    enum ProductType{
+    public enum ProductType{
         ACCOUNT, CARD
+    }
+
+    public Products setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Products setAccountNumber(Long accountNumber) {
+        this.accountNumber = accountNumber;
+        return this;
+    }
+
+    public Products setBalance(Double balance) {
+        this.balance = balance;
+        return this;
+    }
+
+    public Products setProductType(ProductType productType) {
+        this.productType = productType;
+        return this;
+    }
+
+    public Products setCreatedAt(OffsetDateTime createdAt) {
+        this.createdAt = createdAt;
+        return this;
+    }
+
+    public Products setPayment(Payment payment) {
+        this.payment = payment;
+        return this;
     }
 
     @Override

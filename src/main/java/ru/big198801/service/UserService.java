@@ -9,7 +9,6 @@ import ru.big198801.mapper.UsersMapper;
 import ru.big198801.model.dto.UsersDto;
 import ru.big198801.model.entity.Users;
 import ru.big198801.repository.UsersRepository;
-import java.sql.SQLException;
 import java.util.List;
 
 @Component
@@ -39,12 +38,12 @@ public class UserService {
     }
 
     @Transactional
-    public void updateUser(Users user) throws SQLException {
+    public void updateUser(Users user) {
         usersRepository.save(user);
     }
 
     @Transactional
-    public void deleteUserById(Long id) throws SQLException {
+    public void deleteUserById(Long id) {
         usersRepository.deleteById(id);
     }
 
@@ -54,7 +53,7 @@ public class UserService {
     }
 
     @Transactional
-    public void deleteAllUsers() throws SQLException {
+    public void deleteAllUsers() {
         usersRepository.deleteAll();
     }
 }

@@ -10,10 +10,9 @@ import java.util.Optional;
 
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Long> {
+
     @EntityGraph(value = "Users.withProducts", type = EntityGraph.EntityGraphType.LOAD)
     Optional<Users> findByUsername(String username);
-
     void deleteByUsername(String username);
-
     Optional<List<Users>> findByUsernameContaining(String username);
 }
